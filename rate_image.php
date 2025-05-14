@@ -30,7 +30,7 @@ try {
     $pdo = new PDO("pgsql:host=hopper.proxy.rlwy.net;port=23867;dbname=railway", "postgres", "aZTRmXITkwuUkhJDdaSPQrIfVuowrdzc");
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    // Upsert (update if exists, insert if not)
+    
     $stmt = $pdo->prepare('
         INSERT INTO "Image_Rating" ("UserId", "ImageId", "Rating", "Rated_at")
         VALUES (:userId, :imageId, :rating, NOW())
