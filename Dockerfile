@@ -1,7 +1,12 @@
 FROM php:8.2-apache
 
-# Kopiraj sve datoteke u Apache root
-COPY . /var/www/html/
+# Instalacija potrebnih ekstenzija uključujući PostgreSQL driver
+RUN apt-get update && apt-get install -y \
+    libpq-dev \
+    && docker-php-ext-install pdo pdo_pgsql
 
-# Omogući mod_rewrite (nije obavezno, ali korisno)
+# Omogući mod_rewrite (ako koristiš)
 RUN a2enmod rewrite
+
+# Kopiraj aplikaciju
+COPY . /var/www/html/
