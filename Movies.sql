@@ -1,28 +1,28 @@
+-- Ekstenzija za UUID generaciju
 CREATE EXTENSION IF NOT EXISTS pgcrypto;
 
-SELECT * FROM "User"
-SELECT * FROM "Movie"
-SELECT * FROM "User_Wishlist"
-SELECT * FROM "Image"
-SELECT * FROM "Image_Rating"
+-- DROP tablice ako postojiš (ako želiš očistiti staro, makni komentar)
+/*
+DROP TABLE IF EXISTS "Image_Rating";
+DROP TABLE IF EXISTS "User_Wishlist";
+DROP TABLE IF EXISTS "Image";
+DROP TABLE IF EXISTS "Movie";
+DROP TABLE IF EXISTS "User";
+*/
 
-DROP TABLE "User"
-DROP TABLE "Movie"
-DROP TABLE "Image"
-DROP TABLE "Image_Rating"
-
-CREATE TABLE "User"(
-	"Id" UUID,
-	"Username" VARCHAR(255),
-	"Password" VARCHAR(255),
-	"Email" VARCHAR(255),
-	"Name" VARCHAR(255),
-	"Created_at" TIMESTAMP, 
-	PRIMARY KEY("Id")
+-- Tablica korisnika
+CREATE TABLE "User" (
+    "Id" UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    "Username" VARCHAR(255),
+    "Password" VARCHAR(255),
+    "Email" VARCHAR(255),
+    "Name" VARCHAR(255),
+    "Created_at" TIMESTAMP,
+    "Role" VARCHAR(50) DEFAULT 'user'
 );
-ALTER TABLE "User" ADD COLUMN "Role" VARCHAR(50) DEFAULT 'user';
 
-INSERT INTO "User" ("Id", "Username", "Password", "Email", "Name", "Role", "Created_at")/*Kreiranje admina*/
+-- Dodaj jednog admin korisnika
+INSERT INTO "User" ("Id", "Username", "Password", "Email", "Name", "Role", "Created_at")
 VALUES (
   gen_random_uuid(),
   'admin',
@@ -33,6 +33,7 @@ VALUES (
   NOW()
 );
 
+-- Tablica filmova
 CREATE TABLE "Movie" (
     "Id" UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     "Title" VARCHAR(255) NOT NULL,
@@ -40,9 +41,11 @@ CREATE TABLE "Movie" (
     "Duration" INT NOT NULL,
     "Genre" VARCHAR(100) NOT NULL,
     "Rating" NUMERIC(2,1) CHECK ("Rating" >= 0 AND "Rating" <= 10),
+    "Country" VARCHAR(100) NOT NULL DEFAULT 'Unknown',
     "Created_at" TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+-- Tablica korisničke liste želja
 CREATE TABLE "User_Wishlist" (
     "UserId" UUID NOT NULL,
     "MovieId" UUID NOT NULL,
@@ -52,9 +55,25 @@ CREATE TABLE "User_Wishlist" (
     FOREIGN KEY ("MovieId") REFERENCES "Movie"("Id") ON DELETE CASCADE
 );
 
-ALTER TABLE "Movie"
-ADD COLUMN "Country" VARCHAR(100) NOT NULL DEFAULT 'Unknown';
+-- Tablica slika
+CREATE TABLE "Image" (
+  "Id" UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  "Filename" VARCHAR(255) NOT NULL,
+  "Path" TEXT NOT NULL,
+  "Source" VARCHAR(50),
+  "Uploaded_at" TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
 
+-- Tablica ocjena slika
+CREATE TABLE "Image_Rating" (
+  "UserId" UUID REFERENCES "User"("Id") ON DELETE CASCADE,
+  "ImageId" UUID REFERENCES "Image"("Id") ON DELETE CASCADE,
+  "Rating" INT CHECK ("Rating" >= 1 AND "Rating" <= 5),
+  "Rated_at" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY ("UserId", "ImageId")
+);
+
+-- Podaci za filmove
 INSERT INTO "Movie" ("Title", "Year", "Duration", "Genre", "Rating", "Country") VALUES
 ('The Grand Escape', 2015, 120, 'Action', 7.8, 'USA'),
 ('Love in Paris', 2018, 105, 'Romance', 6.9, 'France'),
@@ -76,19 +95,3 @@ INSERT INTO "Movie" ("Title", "Year", "Duration", "Genre", "Rating", "Country") 
 ('Pixel War', 2019, 106, 'Animation', 7.3, 'South Korea'),
 ('The Archivist', 2017, 94, 'Documentary', 8.0, 'Germany'),
 ('Redemption Path', 2021, 121, 'Action', 4.1, 'Brazil');
-
-CREATE TABLE "Image" (
-  "Id" UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  "Filename" VARCHAR(255) NOT NULL,
-  "Path" TEXT NOT NULL,
-  "Source" VARCHAR(50), 
-  "Uploaded_at" TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
-CREATE TABLE "Image_Rating" (
-  "UserId" UUID REFERENCES "User"("Id") ON DELETE CASCADE,
-  "ImageId" UUID REFERENCES "Image"("Id") ON DELETE CASCADE,
-  "Rating" INT CHECK ("Rating" >= 1 AND "Rating" <= 5),
-  "Rated_at" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY ("UserId", "ImageId")
-);
