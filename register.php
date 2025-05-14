@@ -1,16 +1,15 @@
 <?php
 
-$host = 'localhost'; 
-$dbname = 'postgres'; 
-$user = 'postgres'; 
-$password = 'postgres'; 
+$host = 'postgres.railway.internal';
+$port = '5432';
+$dbname = 'railway';
+$user = 'postgres';
+$pass = 'aZTRmXITkwuUkhJDdaSPQrIfVuowrdzc';
 
 try{
     // Create a new PDO instance
-    $dsn = "pgsql:host=$host;dbname=$dbname";
-    $pdo = new PDO($dsn, $user, $password);
-
-$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $pdo = new PDO("pgsql:host=$host;port=$port;dbname=$dbname", $user, $pass);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
  // Get the raw POST data
  $input = file_get_contents('php://input');

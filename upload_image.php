@@ -47,13 +47,15 @@ if (!move_uploaded_file($file['tmp_name'], $targetPath)) {
 }
 
 
-$host = 'localhost';
-$dbname = 'postgres';
+$host = 'postgres.railway.internal';
+$port = '5432';
+$dbname = 'railway';
 $user = 'postgres';
-$pass = 'postgres';
+$pass = 'aZTRmXITkwuUkhJDdaSPQrIfVuowrdzc';
+
 
 try {
-    $pdo = new PDO("pgsql:host=$host;dbname=$dbname", $user, $pass);
+    $pdo = new PDO("pgsql:host=$host;port=$port;dbname=$dbname", $user, $pass);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     $stmt = $pdo->prepare('INSERT INTO "Image" ("Filename", "Path", "Source") VALUES (:filename, :path, :source)');

@@ -2,11 +2,11 @@
 session_start();
 session_regenerate_id(true);
 
-$host = 'localhost';
-$port = '5432'; 
-$dbname = 'postgres';
+$host = 'postgres.railway.internal';
+$port = '5432';
+$dbname = 'railway';
 $user = 'postgres';
-$pass = 'postgres';
+$pass = 'aZTRmXITkwuUkhJDdaSPQrIfVuowrdzc';
 
 try {
     $pdo = new PDO("pgsql:host=$host;port=$port;dbname=$dbname", $user, $pass);

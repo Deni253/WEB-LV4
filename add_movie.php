@@ -18,8 +18,14 @@ foreach ($required as $field) {
     }
 }
 
+$host = 'postgres.railway.internal';
+$port = '5432';
+$dbname = 'railway';
+$user = 'postgres';
+$pass = 'aZTRmXITkwuUkhJDdaSPQrIfVuowrdzc';
+
 try {
-    $pdo = new PDO("pgsql:host=localhost;dbname=postgres", "postgres", "postgres");
+    $pdo = new PDO("pgsql:host=$host;port=$port;dbname=$dbname", $user, $pass);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     $stmt = $pdo->prepare('

@@ -1,9 +1,16 @@
 <?php
 header("Content-Type: application/json");
 
+$host = 'postgres.railway.internal';
+$port = '5432';
+$dbname = 'railway';
+$user = 'postgres';
+$pass = 'aZTRmXITkwuUkhJDdaSPQrIfVuowrdzc';
+
+
 try {
-    $pdo = new PDO("pgsql:host=localhost;dbname=postgres", "postgres", "postgres");
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $pdo = new PDO("pgsql:host=$host;port=$port;dbname=$dbname", $user, $pass);
+$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     $genre = $_GET['genre'] ?? null;
     $year = $_GET['year'] ?? null;

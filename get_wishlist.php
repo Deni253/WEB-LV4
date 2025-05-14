@@ -8,9 +8,15 @@ if (!isset($_SESSION['user_id'])) {
     exit;
 }
 
+$host = 'postgres.railway.internal';
+$port = '5432';
+$dbname = 'railway';
+$user = 'postgres';
+$pass = 'aZTRmXITkwuUkhJDdaSPQrIfVuowrdzc';
+
 try {
-    $pdo = new PDO("pgsql:host=localhost;dbname=postgres", "postgres", "postgres");
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $pdo = new PDO("pgsql:host=$host;port=$port;dbname=$dbname", $user, $pass);
+$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     $stmt = $pdo->prepare('
     SELECT m."Id", m."Title", m."Year", m."Duration", m."Genre", m."Country", m."Rating"
