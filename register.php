@@ -1,14 +1,9 @@
 <?php
 
-$host = 'postgres-production-da53.up.railway.app';
-$port = '5432';
-$dbname = 'railway';
-$user = 'postgres';
-$pass = 'aZTRmXITkwuUkhJDdaSPQrIfVuowrdzc';
 
 try{
     // Create a new PDO instance
-    $pdo = new PDO("pgsql:host=$host;port=$port;dbname=$dbname", $user, $pass);
+    $pdo = new PDO("pgsql:host=hopper.proxy.rlwy.net;port=23867;dbname=railway", "postgres", "aZTRmXITkwuUkhJDdaSPQrIfVuowrdzc");
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
  // Get the raw POST data
