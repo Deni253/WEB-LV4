@@ -47,7 +47,7 @@ if (!move_uploaded_file($file['tmp_name'], $targetPath)) {
 }
 
 
-$host = 'postgres.railway.internal';
+$host = 'postgres-production-da53.up.railway.app';
 $port = '5432';
 $dbname = 'railway';
 $user = 'postgres';

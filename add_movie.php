@@ -18,7 +18,7 @@ foreach ($required as $field) {
     }
 }
 
-$host = 'postgres.railway.internal';
+$host = 'postgres-production-da53.up.railway.app';
 $port = '5432';
 $dbname = 'railway';
 $user = 'postgres';
