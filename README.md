@@ -1,5 +1,5 @@
 # WEB-LV4
- 🎬 Movie & Image Gallery Web App
+  Movie & Image Gallery Web App
 
 A full-stack web application for managing and exploring a movie collection and image gallery. Built with PHP, PostgreSQL, JavaScript, and Bootstrap. Includes user authentication, role-based access (admin/user), filtering, image uploads with ratings, wishlist functionality, and Docker-based deployment.
 
@@ -38,5 +38,5 @@ A full-stack web application for managing and exploring a movie collection and i
 
 ---
 
-## 🗄️ Database Schema (PostgreSQL)
+## Database Schema (PostgreSQL)
 - Movies database file included
