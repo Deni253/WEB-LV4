@@ -13,6 +13,9 @@ A full-stack web application for managing and exploring a movie collection and i
 - Ratings displayed with conditional styling
 - Users can **add movies to a wishlist**
 - Admin dashboard at `index.html`, user dashboard at `User.html`
+- Admin is manually inserted into the Database with the according role
+- Admin dashboard opens by default
+- To access Admin dashboard again log-in with Username: `admin` and password: `secure`
 
 ### Image Gallery
 - Responsive gallery with Bootstrap cards
