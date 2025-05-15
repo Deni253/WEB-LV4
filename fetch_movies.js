@@ -60,34 +60,23 @@ document.getElementById('clearFilters').addEventListener('click', () => {
 
         // Wishlist button handler
         if (showWishlist) {
+          const btn = row.querySelector('.wishlist-btn');
           btn.addEventListener('click', () => {
-          fetch('add_to_wishlist.php', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ movieId: movie.Id })
-          })
-            .then(res => res.json())
-            .then(result => {
-              if (result.warning) {
-                const confirmAdd = confirm(result.warning);
-                if (confirmAdd) {
-                  fetch('add_to_wishlist.php', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ movieId: movie.Id, confirmLowRating: true })
-                  })
-                    .then(res2 => res2.json())
-                    .then(result2 => alert(result2.message || result2.error))
-                    .catch(() => alert('Failed to confirm add.'));
-                }
-              } else if (result.message) {
-                alert(result.message);
-              } else {
-                alert(result.error || 'Something went wrong.');
-              }
+            fetch('add_to_wishlist.php', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ movieId: movie.Id })
             })
-            .catch(() => alert('Could not add to wishlist.'));
-        });
+              .then(res => res.json())
+              .then(result => {
+                if (result.warning) {
+                  alert(result.warning);
+                } else {
+                  alert(result.message);
+                }
+              })
+              .catch(() => alert('Could not add to wishlist'));
+          });
         }
 
         // Delete button handler
