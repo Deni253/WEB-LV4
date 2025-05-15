@@ -22,7 +22,7 @@ A full-stack web application for managing and exploring a movie collection and i
 
 ### Image Gallery
 - Responsive gallery with Bootstrap cards
-- Upload images
+- Upload images using the dropdown menu
 - Rate images 1–5 stars (logged-in users only)
 - Average rating shown per image
 - Ratings persist in PostgreSQL
