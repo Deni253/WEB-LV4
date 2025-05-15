@@ -1,5 +1,6 @@
 # WEB-LV4
   Movie & Image Gallery Web App
+  [Web-Site](https://striking-luck-production.up.railway.app/)
 
 A full-stack web application for managing and exploring a movie collection and image gallery. Built with PHP, PostgreSQL, JavaScript, and Bootstrap. Includes user authentication, role-based access (admin/user), filtering, image uploads with ratings, wishlist functionality, and Docker-based deployment.
 
