@@ -1,6 +1,7 @@
 # WEB-LV4
   Movie & Image Gallery Web App
   [Web-Site](https://striking-luck-production.up.railway.app/)
+  ##IMPORTANT NOTE: YOU MUST REGISTER AND LOG IN FOR USER DASHBOARD TO APPEAR. ADMIN OPENS BY DEFAULT. WHEN YOU WANT TO ACCESS ADMIN DASHBOARD AGAIN LOG IN WITH USERNAME: `admin` AND PASSWORD: `secure`
 
 A full-stack web application for managing and exploring a movie collection and image gallery. Built with PHP, PostgreSQL, JavaScript, and Bootstrap. Includes user authentication, role-based access (admin/user), filtering, image uploads with ratings, wishlist functionality, and Docker-based deployment.
 
