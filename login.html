@@ -9,7 +9,7 @@
     <title>Login Page</title>
 </head>
 <body>
-    <form id="loginForm" style="height: 600px;width: 500px; margin:auto;margin-top: 50px; border: 5px solid black;border-radius: 20px;padding: 20px;background-color: white;">
+    <form id="loginForm" action="#" style="height: 600px;width: 500px; margin:auto;margin-top: 50px; border: 5px solid black;border-radius: 20px;padding: 20px;background-color: white;">
         <h1>Log-in</h1>
         <div class="form-group">
           <label for="exampleInputUsername1">Username</label>
@@ -50,7 +50,7 @@
                 if (data.role === 'admin') {
                     window.location.href = '/index.html';
                 } else {
-                    window.location.href = '/user.html';
+                    window.location.href = '/User.html';
                 }
             }, 2000);
         } else {
