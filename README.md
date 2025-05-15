@@ -21,6 +21,7 @@ A full-stack web application for managing and exploring a movie collection and i
 - To access Admin dashboard again log-in with Username: `admin` and password: `secure`
 
 ### Image Gallery
+- Gallery accessible trough User dashboard only
 - Responsive gallery with Bootstrap cards
 - Upload images using the dropdown menu
 - Rate images 1–5 stars (logged-in users only)
