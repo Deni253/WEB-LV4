@@ -49,6 +49,7 @@ if (!move_uploaded_file($file['tmp_name'], $targetPath)) {
 
 try {
     $pdo = new PDO("pgsql:host=hopper.proxy.rlwy.net;port=23867;dbname=railway", "postgres", "aZTRmXITkwuUkhJDdaSPQrIfVuowrdzc");
+
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     $stmt = $pdo->prepare('INSERT INTO "Image" ("Filename", "Path", "Source") VALUES (:filename, :path, :source)');
